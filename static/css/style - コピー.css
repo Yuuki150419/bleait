@@ -1,0 +1,82 @@
+.one_checkbox input[type="checkbox"] {
+    display: none;
+}
+    /* チェックボックスの代わりを成すラベル */
+    .one_checkbox input[type="checkbox"] + label {
+        display: none;
+        cursor: pointer;
+        display: block; /*widthとheightを変更する*/
+        position: relative; /*相対位置relative*/
+        padding: 0px;
+        margin: 0px 0px 0px 0px; /*余白*/
+        @import url('file:///C:\Users\miyamoto\blogproject\static\css\style.css'); /*text-align: center; 中央揃え*/
+    }
+    /* ラベルの左に表示させる丸の箱 */
+    .one_checkbox input[type="checkbox"] + label::before {
+        content: ""; /*before、afterに挿入する */
+        position: absolute; /*絶対位置*/
+        display: block; /*ブロック要素*/
+        /*box-sizing: border-box; /*paddingとborderを幅と高さに含める*/
+        width: 20px;
+        height: 20px;
+        /*margin-top: -10px;*/
+        border: 1px solid;
+        border-radius: 50%;
+        /*border-color: #585753; 枠の色変更*/
+        /*background-color: #FFF; 背景の色変更*/
+    }
+    /* チェックが入った時の丸 */
+    .one_checkbox input[type="checkbox"]:checked + label::after {
+        content: "";
+        position: absolute;
+        display: block;
+        box-sizing: border-box;
+        width: 14px;
+        height: 14px;
+        margin-top: 3px;
+        margin-left: 3px;
+        background-color: black;
+        border-radius: 50%;
+    }
+
+.row_checkbox {
+    display: flex;
+    justify-content: center;
+}
+
+.col_checkbox{
+}
+
+.store_shape {
+    /*
+    border-width: medium;
+    border-style: solid;
+    border-color: blue;
+    */
+}
+
+.wide_line {
+    margin: 7px 0px 7px 0px ;
+    width: 100px;
+    height: 6px;
+}
+
+.length_line {
+    margin: 0px 7px 0px 7px;
+    width: 6px;
+    height: 100px;
+}
+
+.line_color_black {
+    background-color: black;
+}
+
+.white_box {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+}
+.checkbox_flame {
+    margin: 10px;
+    background-color: white;
+}

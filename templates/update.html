@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+<title>混雑状況管理サイトupdate</title>
+<header class="page_header wrapper">
+    <h1 class="logo">混雑状況管理サイト update</h1>
+    <nav>
+        <ul class="main_nav">
+            <li><a href="{% url 'home' ID_Data %}">ホーム</a></li>
+            <li><a href="#">ログアウト</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock header %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" action="{% url 'save' ID_Data %}" onsubmit="doPreSubmit();">
+    {% csrf_token %}
+    <div style="visibility: hidden;">
+        <div style="visibility: visible;">
+            店舗名 : <input id="store_name_Data" type="text" name="store_name_Data" value="{{store_name_Data}}">
+        </div>
+        <div style="visibility: visible;">
+            住所 : <input id="store_address_Data" type="text" name="store_address_Data" value="{{store_address_Data}}">
+        </div>
+        <input id="business_status_Data_No" type="text" name="business_status_Data_No" value="{{business_status_Data}}">
+        <div style="visibility: visible;">
+            営業状況 :
+            <select id="business_status_Data" type="text" name="business_status_Data">
+                <option value="">---</option>
+                <option value="営業中">営業中</option>
+                <option value="準備中">準備中</option>
+                <option value="休業中">休業中</option>
+            </select>
+        </div>
+        <div style="visibility: visible;">
+            店のコメント : <textarea id="store_comment_Data" type="textarea" name="store_comment_Data" rows="10" cols="60">{{store_comment_Data}}</textarea>
+        </div>
+        <!--店舗の形状-->
+        <div style="visibility: visible;">
+            <canvas id="canvas" width="1000" height="500" style="border:1px solid"></canvas>
+            <div>
+                <input type="button" onclick="store()" value="店舗の形状（黒）">
+                <input type="button" onclick="device()" value="子機の位置（赤）">
+                <input type="button" onclick="wall()" value="壁">
+                <input type="button" onclick="desk()" value="机">
+                <input type="button" onclick="chair()" value="椅子">
+                <input type="button" onclick="move()" value="移動">
+                <input type="button" onclick="center_move()" value="中心に移動">
+            </div>
+            <div>
+                <input type="button" onclick="resetCanvas()" value="リセット">
+                <input type="button" onclick="chg_img()" value="保存">
+                <input type="button" onclick="status()" value="ステータス">
+                <input type="button" onclick="back()" value="戻る">
+                <input type="button" onclick="forward()" value="進む">
+                <input type="button" onclick="arrange()" value="整える">
+            </div>
+            <!--<canvas id='out' width='500' height='500'></canvas>-->
+            <!--<div id="log"></div>-->
+            <div><img id="image"></div>
+        </div>
+
+        <div>
+            <input id="drawingImage_Data" type="text" name="drawingImage_Data" value="{{drawingImage_Data}}">
+        </div>
+        <button type="submit" style="visibility: visible;">送信</button>
+        <!--<input style="visibility: visible;" type="submit" value="更新1">-->
+        <!--<a href="{% url 'save' 10 %}" style="visibility: visible;" class="btn btn-primary">更新2</a>-->
+    </div>
+    </form>
+
+    <script type="text/javascript" src="{% static 'js/canvas.js' %}"></script>
+            {% endblock content %}

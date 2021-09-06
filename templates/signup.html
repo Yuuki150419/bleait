@@ -1,0 +1,25 @@
+﻿{% extends "base.html" %}
+{% block header %}
+<title>混雑状況管理サイト sign up</title>
+{% endblock header %}
+{% block content %}
+<div>
+    <form method="post">
+        {% csrf_token %}
+        <h1>Please sign up</h1>
+        <a href="{% url 'login' %}">ログイン</a>
+        <div>
+            {% if error %}
+            {{ error }}
+            {% endif %}
+        </div>
+        <div>
+            <label for="inputUsername">username</label>
+            <input type="text" id="inputUsername" placeholder="Username" name="username_data" required autofocus>
+            <label for="inputPassword">password</label>
+            <input type="text" id="inputPassword" placeholder="Password" name="password_data" required>
+            <button type="submit">Sign up</button>
+        </div>
+    </form>
+</div>
+{% endblock content %}

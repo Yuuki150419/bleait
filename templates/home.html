@@ -1,0 +1,36 @@
+﻿{% extends "base.html" %}
+{% block header %}
+<title>混雑状況管理サイトhome</title>
+<header class="page_header wrapper">
+    <h1 class="logo">混雑状況管理サイト home</h1>
+    <nav>
+        <ul class="main_nav">
+            <!--<li><a href="#">ホーム</a></li> -->
+            <li><a href="{% url 'home' ID_Data %}">ホーム</a></li>
+            <li><a href="{% url 'logout' %}">ログアウト</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock header %}
+
+{% block content %}
+<div>
+    <div>
+        店舗名 : {{store_name_Data}}
+    </div>
+    <div>
+        住所 : {{store_address_Data}}
+    </div>
+    <div>
+        営業状況 :{{business_status_Data}}
+    </div>
+    <div>
+        店のコメント :{{store_comment_Data}}
+    </div>
+    <div>
+        <img src="{{drawingImage_Data}}" width='750'>
+    </div>
+
+    <a href="{% url 'update' ID_Data %}" class="btn btn-primary">編集する</a>
+</div>
+{% endblock content %}

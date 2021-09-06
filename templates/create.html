@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block header %}
+    <title>混雑状況管理サイトcreate</title>
+<header class="page_header wrapper">
+    <h1 class="logo">混雑状況管理サイト create</h1>
+    <nav>
+        <ul class="main_nav">
+            <!--<li><a href="#">ホーム</a></li> -->
+            <li><a href="#">ホーム</a></li>
+            <li><a href="#">ログアウト</a></li>
+        </ul>
+    </nav>
+</header>
+{% endblock header %}
+
+{% block content %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>店舗名：<input type="text" name="store_name"></p>
+    <p>住所：<input type="text" name="store_address"></p>
+    <p>
+        店舗の形状
+        <input type="file" name="images">
+    </p>
+    <div>
+        <canvas id="canvas" width="1000" height="500" style="border:1px solid">
+        </canvas>
+        <div>
+            <input type="button" onclick="store_shape()" value="店舗の形状（黒）">
+            <input type="button" onclick="device_position()" value="子機の位置（赤）">
+            <input type="button" onclick="wall()" value="壁">
+            <input type="button" onclick="desk()" value="机">
+            <input type="button" onclick="chair()" value="椅子">
+            <input type="button" onclick="move()" value="移動">
+            <input type="button" onclick="center_move()" value="中心に移動">
+        </div>
+        <div>
+            <input type="button" onclick="resetCanvas()" value="リセット">
+            <input type="button" onclick="chg_img()" value="保存">
+            <input type="button" onclick="status()" value="ステータス">
+            <input type="button" onclick="back()" value="戻る">
+            <input type="button" onclick="forward()" value="進む">
+            <input type="button" onclick="arrange()" value="整える">
+        </div>
+        <!--<div id="log"></div>-->
+    </div>
+
+    <p>営業状況：</p>
+    <select name="business_status">
+        <option value="営業中">営業中</option>
+        <option value="準備中">準備中</option>
+        <option value="休業中">休業中</option>
+    </select>
+    <p>店のコメント</p>
+    <textarea rows="10" cols="60" name="store_comment">ここに記入してください</textarea></p>
+
+    <canvas id='out' width='500' height='500'></canvas>
+    ←送信する画像
+    <input type="submit" value="送信">
+</form>
+<script type="text/javascript" src="{% static 'js/canvas.js' %}"></script>
+{% endblock content %}
